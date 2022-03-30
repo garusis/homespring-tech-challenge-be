@@ -50,5 +50,10 @@
       "fixtures/*",
       "dist/*"
     ]
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "./node_modules/.bin/eslint --fix"
+    ]
   }
 }
