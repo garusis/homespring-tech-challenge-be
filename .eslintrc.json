@@ -20,7 +20,8 @@
   "rules": {
     "import/extensions": "off",
     "no-console": "error",
-    "no-void": "off"
+    "no-void": "off",
+    "class-methods-use-this": "warn"
   },
   "settings": {
     "import/resolver": {
