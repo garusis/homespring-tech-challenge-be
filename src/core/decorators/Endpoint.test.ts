@@ -25,7 +25,9 @@ describe('Endpoint', () => {
 
   it('Attaches the endpoint settings to the method', async () => {
     const mock = new MockController();
-    expect(getEndpoints(mock)).toEqual([{ path: 'test', method: 'get' }]);
+    expect(getEndpoints(mock)).toEqual([
+      { path: 'test', method: 'get', descriptor: expect.anything() },
+    ]);
 
     const secondMock = new SecondMockController();
     expect(getEndpoints(secondMock)).toEqual([]);

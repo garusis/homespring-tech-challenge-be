@@ -5,9 +5,9 @@ import Controller from './Controller';
 import Endpoint from './Endpoint';
 import BSApp from '../BSApp';
 
-@Controller('test-path')
+@Controller('/test-path')
 class MockController {
-  @Endpoint({ path: 'test', method: 'get' })
+  @Endpoint({ path: '/test', method: 'get' })
   method(req: Request, res: Response) {
     res.sendStatus(200);
   }
@@ -21,6 +21,7 @@ describe('Controller', () => {
   });
 
   it('Attaches a new router to the app based on the controller path and attaches its endpoints', async () => {
+    const mock = new MockController();
     await request(bsApp.app).get('/test-path/test').expect(200);
   });
 });
