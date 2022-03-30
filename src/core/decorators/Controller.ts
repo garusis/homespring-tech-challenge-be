@@ -1,13 +1,13 @@
 import 'reflect-metadata';
 
-const controllerPathKey = Symbol('controller-path');
+const controllerPathKey = Symbol.for('controller-path');
 
 export function getControllerPathKey(target: any) {
-  return '';
+  return Reflect.getMetadata(controllerPathKey, target.constructor);
 }
 
-export default function Controller(controllerPath: string) {
-  return function (target: any) {
-    void 0;
+export default function Controller(controllerPath: string): ClassDecorator {
+  return function (target) {
+    Reflect.defineMetadata(controllerPathKey, controllerPath, target);
   };
 }
