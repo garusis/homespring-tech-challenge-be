@@ -8,11 +8,19 @@ type TEndpointSettings = {
 const endpointsKey = Symbol.for('endpoints');
 
 export function getEndpoints(target: any): Array<TEndpointSettings> {
-  return [];
+  return Reflect.getMetadata(endpointsKey, target) || [];
 }
 
 export default function Endpoint(settings: TEndpointSettings): MethodDecorator {
   return function (target) {
-    void 0;
+    let currentEndpoints = Reflect.getMetadata(
+      endpointsKey,
+      target,
+    ) as Array<TEndpointSettings>;
+    if (!currentEndpoints) {
+      currentEndpoints = [];
+      Reflect.defineMetadata(endpointsKey, currentEndpoints, target);
+    }
+    currentEndpoints.push(settings);
   };
 }
